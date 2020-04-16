@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Str;
 
+
+$DATABASE_URL=parse_url(' postgres://smkvwnzzfnkzcq:d5ca20f4a5e171e47a2bb07670d13c4e887fac42e0357e93f76d0a8c1d3ed02e@ec2-34-200-101-236.compute-1.amazonaws.com:5432/d415li540f13ai
+HEROKU_POSTGRESQL_IVORY_URL: postgres://seskgodpvitbki:bc323424f845381f6ec320b54116ac11b7ef86039cd5b7f72a70a3bb5bc71d31@ec2-18-235-20-228.compute-1.amazonaws.com:5432/defdsp3iv3iqu6');
+
 return [
 
     /*
@@ -46,11 +50,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
