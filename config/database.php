@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 
 $DATABASE_URL = [];
 
-if (env("APP_ENV") == 'local') {
+if (env("APP_ENV") != 'local') {
     $DATABASE_URL = parse_url(getenv("DATABASE_URL"));
 }
 
