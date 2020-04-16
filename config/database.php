@@ -3,8 +3,10 @@
 use Illuminate\Support\Str;
 
 
-$DATABASE_URL=parse_url(' postgres://smkvwnzzfnkzcq:d5ca20f4a5e171e47a2bb07670d13c4e887fac42e0357e93f76d0a8c1d3ed02e@ec2-34-200-101-236.compute-1.amazonaws.com:5432/d415li540f13ai
+$DATABASE_URL= parse_url('postgres://smkvwnzzfnkzcq:d5ca20f4a5e171e47a2bb07670d13c4e887fac42e0357e93f76d0a8c1d3ed02e@ec2-34-200-101-236.compute-1.amazonaws.com:5432/d415li540f13ai
 HEROKU_POSTGRESQL_IVORY_URL: postgres://seskgodpvitbki:bc323424f845381f6ec320b54116ac11b7ef86039cd5b7f72a70a3bb5bc71d31@ec2-18-235-20-228.compute-1.amazonaws.com:5432/defdsp3iv3iqu6');
+
+dd($DATABASE_URL);
 
 return [
 
@@ -69,7 +71,7 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
+//            'url' => env('DATABASE_URL'),
             'host' => $DATABASE_URL["host"],
             'port' => $DATABASE_URL["port"],
             'database' => ltrim($DATABASE_URL["path"], "/"),
