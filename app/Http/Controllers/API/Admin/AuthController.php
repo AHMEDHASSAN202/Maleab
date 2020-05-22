@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Admin;
 
 use App\Helpers\Roles;
 use App\Http\Controllers\Controller;
@@ -13,38 +13,19 @@ use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
-    public function verifyRegisterToken(Request $request)
-    {
-        $request->validate(['token' => 'required|min:16']);
-        $exists = DB::table('register_tokens')->where('token', $request->token)->exists();
-        $msg  = $exists ? 'الكود صحيح' : 'كود التسجيل غير صحيح';
-        return response()->json(['msg' => $msg, 'allow_register' => $exists], $exists ? 200 : 400);
-    }
 
     public function signup(Request $request)
     {
-        $validatedData = $request->validate($this->signupRules(), ['role.*' => 'Please Send User Role [playground || user]']);
-
-        //check if playground register
-        if ($validatedData['role'] == Roles::Playground) {
-            $request->validate(['register_token' => 'required']);
-            $registerToken = DB::table('register_tokens')->where('token', $request->register_token);
-            //check if register token not exists
-            if (!$registerToken->first()) {
-                return response()->json(['msg' => 'كود التسجيل غير صحيح'], 400);
-            }
-        }
+        $validatedData = $request->validate($this->signupRules());
 
         //generate password
         $validatedData['password'] = Hash::make($validatedData['password']);
 
+        //ser admin role
+        $validatedData['role'] = Roles::Admin;
+
         //create new user
         $newUser = User::create($validatedData);
-
-        //remove this register token
-        if ($newUser && isset($registerToken) && !is_null($registerToken)) {
-            $registerToken->delete();
-        }
 
         //create auth token
         $accessToken = $this->getAccessToken($newUser);
@@ -58,17 +39,12 @@ class AuthController extends Controller
         $sometimes = $editProfile ? 'sometimes|' : '';
 
         $rules = [
-            'role'           => ['required', Rule::in([Roles::Playground, Roles::User])],
             'name'           => $sometimes."required|min:3|max:200",
             'email'          => $sometimes.'required|email|unique:users',
             'password'       => $sometimes.'required|min:6|max:100',
             'phone'          => $sometimes.'required|digits:11',
             'address'        => $sometimes.'required|min:3|max:100',
         ];
-
-        if ($editProfile) {
-            unset($rules['role']);
-        }
 
         return $rules;
     }
@@ -81,11 +57,11 @@ class AuthController extends Controller
     public function signin(Request $request)
     {
         $certificate = $request->validate(['email' => 'required', 'password' => 'required']);
-        $user = User::where('email', $certificate['email'])->first();
+        $user = User::where('email', $certificate['email'])->where('role', Roles::Admin)->first();
 
         //check email and password
         if (!$user || !Hash::check($certificate['password'], $user->password)) {
-            return response()->json(['البريد الالكتروني او كلمة المرور غير صحيحة'], 400);
+            return response()->json(['status' => false, 'msg' => 'البريد الالكتروني او كلمة المرور غير صحيحة'], 400);
         }
 
         $accessToken = $this->getAccessToken($user);
@@ -131,5 +107,19 @@ class AuthController extends Controller
         $profile->save();
 
         return response()->json(['profile' => $this->getProfile($profile)]);
+    }
+
+    public function createRegisterToken(Request $request)
+    {
+        $token = bin2hex(openssl_random_pseudo_bytes(8));
+        $data = ['token' => $token];
+
+        $t = DB::table('register_tokens')->insert($data);
+
+        if (!$t) {
+            return response()->json(['status' => false, 'msg' => 'something error'], 400);
+        }
+
+        return response()->json(['status' => true, 'token' => $data['token']], 201);
     }
 }

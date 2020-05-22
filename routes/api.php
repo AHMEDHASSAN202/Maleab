@@ -24,7 +24,7 @@ Route::post('verify-register-token', 'API\\AuthController@verifyRegisterToken');
 Route::post('sign-up', 'API\\AuthController@signup');
 Route::post('sign-in', 'API\\AuthController@signin');
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:api', 'role:user,playground'], function () {
 
     Route::get('profile', 'API\\AuthController@profile');
     Route::put('profile', 'API\\AuthController@editProfile');

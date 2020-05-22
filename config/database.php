@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 
 $DATABASE_URL = [];
 
-if (env("APP_ENV") != 'local') {
+if (env("APP_HOST") == 'heroku') {
     $DATABASE_URL = parse_url(getenv("DATABASE_URL"));
 }
 
@@ -73,16 +73,16 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
 //            'url' => env('DATABASE_URL'),
-            'host' => env("APP_ENV") == 'local' ? env('DB_HOST', '127.0.0.1') : $DATABASE_URL["host"],
-            'port' => env("APP_ENV") == 'local' ? env('DB_PORT', '3306') : $DATABASE_URL["port"],
-            'database' => env("APP_ENV") == 'local' ? env('DB_DATABASE', 'forge') : ltrim($DATABASE_URL["path"], "/"),
-            'username' => env("APP_ENV") == 'local' ? env('DB_USERNAME', 'forge') : $DATABASE_URL["user"],
-            'password' => env("APP_ENV") == 'local' ? env('DB_PASSWORD', '') : $DATABASE_URL["pass"],
+            'host' => env("APP_HOST") != 'heroku' ? env('DB_HOST', '127.0.0.1') : $DATABASE_URL["host"],
+            'port' => env("APP_HOST") != 'heroku' ? env('DB_PORT', '3306') : $DATABASE_URL["port"],
+            'database' => env("APP_HOST") != 'heroku' ? env('DB_DATABASE', 'forge') : ltrim($DATABASE_URL["path"], "/"),
+            'username' => env("APP_HOST") != 'heroku' ? env('DB_USERNAME', 'forge') : $DATABASE_URL["user"],
+            'password' => env("APP_HOST") != 'heroku' ? env('DB_PASSWORD', '') : $DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'schema' => 'public',
-            'sslmode' => env("APP_ENV") == 'local' ? 'prefer' : 'require',
+            'sslmode' => env("APP_HOST") != 'heroku' ? 'prefer' : 'require',
         ],
 
         'sqlsrv' => [
