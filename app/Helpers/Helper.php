@@ -4,12 +4,19 @@
  * User: AHMED HASSAN
  */
 
-
-//check if current route
-if (!function_exists('isRoute')) {
-    function isRoute($route_name) : bool
-    {
-        $uri_first_segment = @sscanf(urldecode(route($route_name)), url('') . '/%s')[0];
-        return urldecode(url()->current()) == urldecode(route($route_name)) || request()->is(sprintf('*/%s', $uri_first_segment));
+/**
+ * Handle SMS Msg
+ *
+ * @param $msg
+ * @param $code
+ * @return mixed|string
+ */
+function getMsgCode($msg, $code)
+{
+    if (strpos($msg, '[code]') !== false) {
+        $msg = str_replace("[code]", $code, $msg);
+    }else {
+        $msg = $msg . ' ' . $code;
     }
+    return $msg;
 }

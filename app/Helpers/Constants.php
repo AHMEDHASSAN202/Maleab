@@ -21,5 +21,8 @@ class Config {
     const LogoHeight = 100;
     const ThumbnailHeight = 300;
     const ThumbnailsWidth = 350;
+    const MsgSendCode = "استخدم [code] لتسجيل الدخول في التطبيق";
+    const PhoneKey = "+2";
+    const MsgResetPassword = "استخدم [code] كرمز اعادة تعيين كلمة المرور";
 }
 

@@ -45,4 +45,27 @@ class Utilities
         return DB::table('settings')->insert(array_merge($updateValues, ['key' => $column]));
     }
 
+    public static function distanceQuery($lat, $long, $table)
+    {
+        if (!$lat || !$long) return null;
+        return "(6371 * acos(cos(radians($lat)) 
+                     * cos(radians($table.lat)) 
+                     * cos(radians($table.long) 
+                     - radians($long)) 
+                     + sin(radians($lat)) 
+                     * sin(radians($table.lat))))";
+    }
+
+    public static function convertMilesToKm($distance)
+    {
+        $m_to_k = $distance * 1.609344;
+        $km = floor($m_to_k);
+        if ($km >= 1) {
+            $d = $km . ' km';
+        }else {
+            $d = ceil($m_to_k * 1000) . ' m';
+        }
+        return $d;
+    }
+
 }

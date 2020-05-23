@@ -341,8 +341,8 @@ if (!function_exists('_createDateFromFormat')) {
 if (!function_exists('_sendSmsByNexmo')) {
     function _sendSmsByNexmo($phone, $msg = null)
     {
-        $Nexmo_API_KEY = env('Nexmo_API_KEY', '87ebfaf4');
-        $Nexmo_API_SECRET = env('Nexmo_API_SECRET', 'GUcMSIAVjU101M3l');
+        $Nexmo_API_KEY = env('Nexmo_API_KEY', '7c52606f');
+        $Nexmo_API_SECRET = env('Nexmo_API_SECRET', 'iWppLoIiqMm1qLHM');
 
         $basic  = new \Nexmo\Client\Credentials\Basic($Nexmo_API_KEY, $Nexmo_API_SECRET);
         $client = new \Nexmo\Client($basic);
@@ -351,7 +351,8 @@ if (!function_exists('_sendSmsByNexmo')) {
             $message = $client->message()->send([
                 'to' => $phone,
                 'from' => config('app.name'),
-                'text' => $msg
+                'text' => $msg,
+                'type' => 'unicode'
             ]);
         }catch (\Exception $exception) {
             return $exception->getMessage();
