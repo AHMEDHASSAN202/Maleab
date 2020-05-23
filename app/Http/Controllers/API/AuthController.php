@@ -150,11 +150,12 @@ class AuthController extends Controller
         $profile->save();
 
         if ($profile->role == Roles::Playground) {
-            if ($request->lat) $profile->playgroundInfo->lat = $request->lat;
-            if ($request->long) $profile->playgroundInfo->long = $request->long;
-            if ($request->price_day) $profile->playgroundInfo->price_day = $request->price_day;
-            if ($request->price_night) $profile->playgroundInfo->price_night = $request->price_night;
-            $profile->playgroundInfo->save();
+            $playgroundInfo = $profile->playgroundInfo ?? new PlaygroundInfo(['playground_id' => $profile->id]);
+            if ($request->lat) $playgroundInfo->lat = $request->lat;
+            if ($request->long) $playgroundInfo->long = $request->long;
+            if ($request->price_day) $playgroundInfo->price_day = $request->price_day;
+            if ($request->price_night) $playgroundInfo->price_night = $request->price_night;
+            $playgroundInfo->save();
         }
 
         return response()->json(['status' => true, 'profile' => $this->getProfile($profile)]);

@@ -147,11 +147,12 @@ class UserController extends Controller
         $user->save();
 
         if ($user->role == Roles::Playground) {
-            if ($request->lat) $user->playgroundInfo->lat = $request->lat;
-            if ($request->long) $user->playgroundInfo->long = $request->long;
-            if ($request->price_day) $user->playgroundInfo->price_day = $request->price_day;
-            if ($request->price_night) $user->playgroundInfo->price_night = $request->price_night;
-            $user->playgroundInfo->save();
+            $playgroundInfo = $profile->playgroundInfo ?? new PlaygroundInfo(['playground_id' => $user->id]);
+            if ($request->lat) $playgroundInfo->lat = $request->lat;
+            if ($request->long) $playgroundInfo->long = $request->long;
+            if ($request->price_day) $playgroundInfo->price_day = $request->price_day;
+            if ($request->price_night) $playgroundInfo->price_night = $request->price_night;
+            $playgroundInfo->save();
 
             $user->load('playgroundInfo');
         }
