@@ -36,3 +36,8 @@ Route::group(['middleware' => 'auth:api', 'role:user,playground'], function () {
     Route::delete('profile', 'API\\AuthController@deleteProfile');
 
 });
+
+
+Route::post('reservation', 'API\\ReservationsController@store')->middleware('auth:api', 'role:user');
+Route::get('reservation/{id}', 'API\\ReservationsController@show')->middleware('auth:api', 'role:user');
+Route::get('reservation', 'API\\ReservationsController@index')->middleware('auth:api', 'role:user');
