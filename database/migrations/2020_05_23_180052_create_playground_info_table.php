@@ -16,8 +16,8 @@ class CreatePlaygroundInfoTable extends Migration
         Schema::create('playground_info', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('playground_id');
-            $table->double('lat');
-            $table->double('long');
+            $table->double('lat')->nullable();
+            $table->double('long')->nullable();
             $table->decimal('price_day')->nullable();
             $table->decimal('price_night')->nullable();
             $table->enum('status', ['open', 'close'])->default('open');
