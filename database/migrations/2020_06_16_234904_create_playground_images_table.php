@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlaygroundInfoTable extends Migration
+class CreatePlaygroundImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreatePlaygroundInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('playground_info', function (Blueprint $table) {
+        Schema::create('playground_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('playground_id');
-            $table->double('lat');
-            $table->double('long');
-            $table->decimal('price_day')->nullable();
-            $table->decimal('price_night')->nullable();
-            $table->enum('status', ['open', 'close']);
+            $table->text('image');
             $table->timestamps();
-
-            $table->foreign('playground_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +28,6 @@ class CreatePlaygroundInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('playground_info');
+        Schema::dropIfExists('playground_images');
     }
 }

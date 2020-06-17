@@ -7,6 +7,8 @@ use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlaygroundController extends Controller
 {
@@ -63,5 +65,19 @@ class PlaygroundController extends Controller
         }
 
         return response()->json(['status' => true, 'playground' => $playground]);
+    }
+
+
+    public function deleteImage(Request $request)
+    {
+        $request->validate(['ids' => 'required'], ['ids.required' => 'مطلوب صورة على الاقل']);
+        $ids = is_array($request->ids) ? $request->ids : [$request->ids];
+        $me_playground = Auth::guard('api')->user();
+        $imgs = $me_playground->playgroundImages()->whereIn('id', $ids)->get();
+        $imgs->map(function ($img) {
+            Storage::disk('public')->delete($img->image);
+        });
+        $me_playground->playgroundImages()->whereIn('id', $ids)->delete();
+        return response()->json(['status' => true]);
     }
 }

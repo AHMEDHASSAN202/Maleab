@@ -5,12 +5,14 @@ namespace App\Http\Controllers\API;
 use App\Helpers\Config;
 use App\Helpers\Roles;
 use App\Http\Controllers\Controller;
+use App\PlaygroundImage;
 use App\PlaygroundInfo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -39,6 +41,9 @@ class AuthController extends Controller
         //generate password
         $validatedData['password'] = Hash::make($validatedData['password']);
 
+        //download avatar image
+        $validatedData['avatar'] = $validatedData['avatar']->store('users/avatar', 'public');
+
         //create new user
         $newUser = User::create($validatedData);
 
@@ -49,6 +54,7 @@ class AuthController extends Controller
             $playgroundInfo->long = $playgroundInfoData['long'];
             $playgroundInfo->price_day = $playgroundInfoData['price_day'];
             $playgroundInfo->price_night = $playgroundInfoData['price_night'];
+            $playgroundInfo->status = Config::DefaultPlaygroundStatus;
             $playgroundInfo->save();
         }
 
@@ -75,6 +81,7 @@ class AuthController extends Controller
             'password'       => $sometimes.'required|min:6|max:100',
             'phone'          => $sometimes.'required|digits:11|unique:users',
             'address'        => $sometimes.'required|min:3|max:100',
+            'avatar'        => 'nullable|image|max:2000'
         ];
 
         if ($editProfile) {
@@ -108,7 +115,7 @@ class AuthController extends Controller
     private function getProfile($user)
     {
         if ($user->role == Roles::Playground) {
-            $user->load('playgroundInfo');
+            $user->load(['playgroundInfo', 'playgroundImages']);
         }
 
         return $user;
@@ -146,6 +153,17 @@ class AuthController extends Controller
         if ($request->phone) $profile->phone = $request->phone;
         if ($request->address) $profile->address = $request->address;
 
+        //check if upload new avatar
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid())
+        {
+            //remove old avatar image
+            if ($profile->avatar && Storage::disk('public')->exists($profile->avatar)) {
+                Storage::disk('public')->delete($profile->avatar);
+            }
+
+            $profile->avatar = $request->file('avatar')->store('users/avatar', 'public');
+        }
+
         //save change
         $profile->save();
 
@@ -155,7 +173,21 @@ class AuthController extends Controller
             if ($request->long) $playgroundInfo->long = $request->long;
             if ($request->price_day) $playgroundInfo->price_day = $request->price_day;
             if ($request->price_night) $playgroundInfo->price_night = $request->price_night;
+            if ($request->status && in_array($request->status, ['open', 'close'])) $playgroundInfo->status = $request->status;
             $playgroundInfo->save();
+
+            //uploaded images
+            if ($request->has('images') && !empty($request->images)) {
+                $request->validate(['images' => 'array', 'images.*' => 'image|max:2000']);
+                $images = [];
+                foreach ($request->images as $img) {
+                    $images[] = [
+                        'playground_id' => $profile->id,
+                        'image'         => $img->store('playgrounds-images', 'public')
+                    ];
+                }
+                PlaygroundImage::insert($images);
+            }
         }
 
         return response()->json(['status' => true, 'profile' => $this->getProfile($profile)]);
@@ -205,6 +237,11 @@ class AuthController extends Controller
     public function deleteProfile()
     {
         $user = Auth::guard('api')->user();
+
+        //remove old avatar image
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+        }
 
         $user->delete();
 

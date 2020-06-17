@@ -59,9 +59,11 @@ class AuthController extends Controller
         }
 
         //send sms
-        $phoneNumber = Config::PhoneKey.$request->phone;
-        $msg = getMsgCode(Config::MsgSendCode, $token);
-        _sendSmsByNexmo($phoneNumber, $msg);
+        if (Config::AllowedSendSMS) {
+            $phoneNumber = Config::PhoneKey.$request->phone;
+            $msg = getMsgCode(Config::MsgSendCode, $token);
+            _sendSmsByNexmo($phoneNumber, $msg);
+        }
 
         return response()->json(['status' => true], 201);
     }

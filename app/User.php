@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(PlaygroundInfo::class, 'playground_id');
     }
+
+    public function playgroundImages()
+    {
+        return $this->hasMany(PlaygroundImage::class, 'playground_id');
+    }
 }
