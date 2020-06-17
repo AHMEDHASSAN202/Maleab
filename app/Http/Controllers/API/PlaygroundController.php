@@ -35,7 +35,7 @@ class PlaygroundController extends Controller
             $query->orderBy("distance", "ASC");
         }
 
-        $playgrounds = $query->get()->map(function ($playground) {
+        $playgrounds = $query->with('playgroundImages')->get()->map(function ($playground) {
             unset($playground->playground_id);
             if (isset($playground->distance)) {
                 $playground->distance = Utilities::convertMilesToKm($playground->distance);
@@ -48,7 +48,7 @@ class PlaygroundController extends Controller
 
     public function show(Request $request, $playground_id)
     {
-        $query = User::select("users.*", "playground_info.lat", "playground_info.long", "playground_info.price_day", "playground_info.price_night", "playground_info.images")
+        $query = User::select("users.*", "playground_info.lat", "playground_info.long", "playground_info.price_day", "playground_info.price_night")
             ->join("playground_info", "playground_id", "=", "users.id")
             ->where('role', Roles::Playground)
             ->where('users.id', $playground_id);
@@ -58,7 +58,7 @@ class PlaygroundController extends Controller
             $query->selectRaw("{$distanceQuery} as distance");
         }
 
-        $playground = $query->firstOrFail();
+        $playground = $query->with('playgroundImages')->firstOrFail();
 
         if (isset($playground->distance)) {
             $playground->distance = Utilities::convertMilesToKm($playground->distance);

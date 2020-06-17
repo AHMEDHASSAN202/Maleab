@@ -20,7 +20,7 @@ class CreatePlaygroundInfoTable extends Migration
             $table->double('long');
             $table->decimal('price_day')->nullable();
             $table->decimal('price_night')->nullable();
-            $table->enum('status', ['open', 'close']);
+            $table->enum('status', ['open', 'close'])->default('open');
             $table->timestamps();
 
             $table->foreign('playground_id')->references('id')->on('users');

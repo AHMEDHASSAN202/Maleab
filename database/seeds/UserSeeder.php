@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'email'     => 'playground@gmail.com',
             'password'  => \Illuminate\Support\Facades\Hash::make('password'),
             'phone'     => '01096206378',
-            'address'   => 'القاهرة'
+            'address'   => 'القاهرة',
         ]);
         \App\User::create([
             'role'      => 'user',
