@@ -4,14 +4,6 @@
     <list default="true" id="548f1ff3-cdeb-4be4-a9bd-3e953c766efb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helpers/Constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Constants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/Admin/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/Admin/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,32 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="46" column="62" selection-start-line="46" selection-start-column="62" selection-end-line="46" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReservationsController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="93" column="43" lean-forward="true" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
-              <folding>
-                <element signature="e#44#67#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Constants.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Helpers/Constants.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+            <state relative-caret-position="404">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -126,9 +97,9 @@
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php" />
-        <option value="$PROJECT_DIR$/app/Helpers/Constants.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Helpers/Constants.php" />
       </list>
     </option>
   </component>
@@ -296,41 +267,6 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Helpers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="Maleab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Maleab" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Maleab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Maleab" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Maleab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Maleab" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Maleab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Maleab" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Maleab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Maleab" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -397,7 +333,7 @@
       <workItem from="1590238869641" duration="14517000" />
       <workItem from="1590255926316" duration="10740000" />
       <workItem from="1592074519959" duration="13000" />
-      <workItem from="1592342326458" duration="10044000" />
+      <workItem from="1592342326458" duration="10670000" />
     </task>
     <task id="LOCAL-00001" summary="env">
       <created>1586990611190</created>
@@ -410,7 +346,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93376000" />
+    <option name="totallyTimeSpent" value="94002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
@@ -422,7 +358,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32843137" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.42156863" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.5277778" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.32959184" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31530613" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
@@ -797,10 +733,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/Constants.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="365">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="e#44#67#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -811,13 +750,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php">
+    <entry file="file://$PROJECT_DIR$/app/Helpers/Constants.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="93" column="43" lean-forward="true" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
-          <folding>
-            <element signature="e#44#67#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="404">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
         </state>
       </provider>
     </entry>

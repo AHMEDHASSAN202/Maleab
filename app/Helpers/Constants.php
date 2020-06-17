@@ -25,7 +25,7 @@ class Config {
     const PhoneKey = "+2";
     const MsgResetPassword = "استخدم [code] كرمز اعادة تعيين كلمة المرور";
     const DefaultPlaygroundStatus = 'open';
-    const AllowedSendSMS = false;
+    const AllowedSendSMS = true;
     const PreventEditWhenStatus = 'done';
 }
 
