@@ -6,6 +6,7 @@ use App\Helpers\Config;
 use App\Helpers\Roles;
 use App\Http\Controllers\Controller;
 use App\Reservation;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -110,5 +111,30 @@ class ReservationsController extends Controller
         $reservation->save();
 
         return response(['status' => true, 'reservation' => $reservation]);
+    }
+
+    public function getPlaygrounds(Request $request)
+    {
+        $userId = Auth::guard('api')->id();
+
+        $playgrounds = User::select('users.id', 'users.name', 'users.avatar', 'users.phone')
+            ->join('reservations', function ($j) use ($userId) {
+                $j->on('users.id', '=', 'reservations.playground_id')
+                    ->where('reservations.user_id', $userId);
+            })
+            ->get();
+
+        $playgrounds = $playgrounds->unique();
+
+        if ($request->has('withReservations')) {
+            $playgrounds = $playgrounds->map(function ($playground) use ($userId) {
+                $playground->load(['playgroundReservation' => function ($q) use ($userId) {
+                    $q->where('user_id', $userId);
+                }]);
+                return $playground;
+            });
+        }
+
+        return response()->json(compact('playgrounds'));
     }
 }

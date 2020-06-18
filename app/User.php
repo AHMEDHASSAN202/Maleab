@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reservation::class, 'user_id');
     }
+
+    public function playgroundReservation()
+    {
+        return $this->hasMany(Reservation::class, 'playground_id');
+    }
 }

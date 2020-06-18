@@ -96,8 +96,10 @@ class PlaygroundController extends Controller
         $users = $users->unique();
 
         if ($request->has('withReservations')) {
-            $users = $users->map(function ($user) {
-                $user->load('reservations');
+            $users = $users->map(function ($user) use ($myId) {
+                $user->load(['reservations' => function ($q) use ($myId) {
+                    $q->where('playground_id', $myId);
+                }]);
                 return $user;
             });
         }
