@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\Config;
 use App\Helpers\Roles;
 use App\Http\Controllers\Controller;
+use App\PlaygroundInfo;
 use App\Reservation;
 use App\User;
 use Illuminate\Http\Request;
@@ -34,6 +35,12 @@ class ReservationsController extends Controller
             $playground_id = $me->id;
             $request->validate(['user_id' => 'required', ['user_id.required' => 'صاحب الحجز مطلوب']]);
             $userId = $request->user_id;
+        }
+
+        $playgroundInfo = PlaygroundInfo::select('playground_id', 'status')->where('playground_id', $playground_id)->firstOrFail();
+
+        if ($playgroundInfo->isClose()) {
+            return response()->json(['status' => false, 'message' => 'playground is close'], 400);
         }
 
         $reservationData['playground_id'] = $playground_id;

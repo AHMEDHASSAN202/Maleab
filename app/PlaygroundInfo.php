@@ -9,4 +9,8 @@ class PlaygroundInfo extends Model
     protected $table = 'playground_info';
 
     protected $guarded = [];
+
+    public function isClose() {
+        return $this->status === 'close';
+    }
 }
