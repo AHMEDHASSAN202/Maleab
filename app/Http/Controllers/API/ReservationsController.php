@@ -16,7 +16,6 @@ class ReservationsController extends Controller
     public function store(Request $request)
     {
         $reservationData = $request->validate([
-            'playground_id' => 'required|exists:users,id',
             'day'           => 'required|date|after_or_equal:' . date("d-m-Y"),
             'start'         => 'required|date_format:H:i',
             'end'           => 'required|date_format:H:i',
@@ -26,12 +25,18 @@ class ReservationsController extends Controller
         $me = Auth::guard('api')->user();
 
         if ($me->role == Roles::User) {
+            //playground is required
+            $vd = $request->validate(['playground_id' => 'required']);
+            $playground_id = $vd['playground_id'];
             $userId = $me->id;
         }else {
+            //playground not required
+            $playground_id = $me->id;
             $request->validate(['user_id' => 'required', ['user_id.required' => 'صاحب الحجز مطلوب']]);
             $userId = $request->user_id;
         }
 
+        $reservationData['playground_id'] = $playground_id;
         $reservationData['user_id'] = $userId;
         $reservationData['status'] = $request->status ?? 'pending';
 
