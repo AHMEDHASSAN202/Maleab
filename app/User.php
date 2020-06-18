@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(PlaygroundImage::class, 'playground_id');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'user_id');
+    }
 }

@@ -80,4 +80,28 @@ class PlaygroundController extends Controller
         $me_playground->playgroundImages()->whereIn('id', $ids)->delete();
         return response()->json(['status' => true]);
     }
+
+
+    public function getUsers(Request $request)
+    {
+        $myId = Auth::guard('api')->id();
+
+        $users = User::select('users.id', 'users.name', 'users.avatar', 'users.phone')
+                       ->join('reservations', function ($j) use ($myId) {
+                           $j->on('users.id', '=', 'reservations.user_id')
+                             ->where('reservations.playground_id', $myId);
+                       })
+                       ->get();
+
+        $users = $users->unique();
+
+        if ($request->has('withReservations')) {
+            $users = $users->map(function ($user) {
+                $user->load('reservations');
+                return $user;
+            });
+        }
+
+        return response()->json(compact('users'));
+    }
 }

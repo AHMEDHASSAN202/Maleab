@@ -45,3 +45,8 @@ Route::post('reservation', 'API\\ReservationsController@store')->middleware('aut
 Route::get('reservation/{id}', 'API\\ReservationsController@show');
 Route::put('reservation/{reservation_id}', 'API\\ReservationsController@update')->middleware('auth:api');
 Route::get('reservation', 'API\\ReservationsController@index');
+
+//Route::get('profile/playgrounds', '')->middleware(['auth:api', 'role:user']);
+Route::get('profile/users', 'API\\PlaygroundController@getUsers')->middleware(['auth:api', 'role:playground']);
+
+
