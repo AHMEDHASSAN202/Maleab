@@ -41,8 +41,10 @@ class AuthController extends Controller
         //generate password
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        //download avatar image
-        $validatedData['avatar'] = $validatedData['avatar']->store('users/avatar', 'public');
+        if (!empty($validatedData['avatar'])) {
+            //download avatar image
+            $validatedData['avatar'] = $validatedData['avatar']->store('users/avatar', 'public');
+        }
 
         //create new user
         $newUser = User::create($validatedData);
