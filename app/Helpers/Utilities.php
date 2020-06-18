@@ -7,6 +7,7 @@
 namespace App\Helpers;
 
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class Utilities
@@ -66,6 +67,21 @@ class Utilities
             $d = ceil($m_to_k * 1000) . ' m';
         }
         return $d;
+    }
+
+    public static function getNewStatusWhenChangeClosingDate($closing_date, $open_date, $oldStatus = null)
+    {
+        if (is_null($closing_date) || is_null($open_date)) return $oldStatus;
+
+        $closingTime = new Carbon($closing_date);
+        $openTime = new Carbon($open_date);
+        $now = new Carbon();
+
+        if ($now->isBetween($closingTime, $openTime)) {
+            return 'close';
+        }
+
+        return $oldStatus;
     }
 
 }

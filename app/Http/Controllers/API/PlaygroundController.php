@@ -14,7 +14,7 @@ class PlaygroundController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::select("users.*", "playground_info.lat", "playground_info.long", "playground_info.price_day", "playground_info.price_night")
+        $query = User::select("users.*", "playground_info.lat", "playground_info.long", "playground_info.price_day", "playground_info.price_night", "playground_info.status")
                         ->join("playground_info", "playground_id", "=", "users.id")
                         ->where('role', Roles::Playground);
 

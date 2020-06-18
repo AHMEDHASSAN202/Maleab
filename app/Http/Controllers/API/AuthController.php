@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\Config;
 use App\Helpers\Roles;
+use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\PlaygroundImage;
 use App\PlaygroundInfo;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -175,7 +177,21 @@ class AuthController extends Controller
             if ($request->long) $playgroundInfo->long = $request->long;
             if ($request->price_day) $playgroundInfo->price_day = $request->price_day;
             if ($request->price_night) $playgroundInfo->price_night = $request->price_night;
-            if ($request->status && in_array($request->status, ['open', 'close'])) $playgroundInfo->status = $request->status;
+            if ($request->status && in_array($request->status, ['open', 'close'])) {
+                $playgroundInfo->status = $request->status;
+            }
+
+            if ($request->has('closing_date') && $request->has('open_date')) {
+                if ($request->closing_date && $request->open_date) {
+                    $request->validate([
+                        'closing_date'  => 'date_format:Y-m-d H:i',
+                        'open_date'     => 'date_format:Y-m-d H:i'
+                    ]);
+                }
+                $closingDate = $playgroundInfo->closing_date = $request->closing_date;
+                $openDate = $playgroundInfo->open_date = $request->open_date;
+                $playgroundInfo->status = Utilities::getNewStatusWhenChangeClosingDate($closingDate, $openDate, $playgroundInfo->status);
+            }
             $playgroundInfo->save();
 
             //uploaded images
