@@ -105,7 +105,7 @@ class PlaygroundController extends Controller
             });
         }
 
-        $reservationAnonymousUsers = Reservation::where('playground_id', $myId)->whereNull('user_id')->get();
+        $reservationAnonymousUsers = Reservation::where('playground_id', $myId)->whereNull('user_id')->get()->where('status', '!=', 'busy');
 
         return response()->json(compact('users', 'reservationAnonymousUsers'));
     }
