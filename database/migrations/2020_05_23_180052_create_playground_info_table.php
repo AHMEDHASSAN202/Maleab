@@ -21,8 +21,6 @@ class CreatePlaygroundInfoTable extends Migration
             $table->decimal('price_day')->nullable();
             $table->decimal('price_night')->nullable();
             $table->enum('status', ['open', 'close'])->default('open');
-            $table->timestamp('closing_date')->nullable();
-            $table->timestamp('open_date')->nullable();
             $table->timestamps();
 
             $table->foreign('playground_id')->references('id')->on('users');

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="548f1ff3-cdeb-4be4-a9bd-3e953c766efb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/Utilities.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Utilities.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3500">
-              <caret line="188" column="23" selection-start-line="188" selection-start-column="23" selection-end-line="188" selection-end-column="23" />
+            <state relative-caret-position="252">
+              <caret line="185" column="13" lean-forward="true" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="13" />
               <folding>
                 <element signature="e#44#67#0#PHP" expanded="true" />
               </folding>
@@ -64,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlaygroundController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlaygroundController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
+            <state relative-caret-position="2200">
               <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
               <folding>
                 <element signature="e#44#66#0#PHP" expanded="true" />
@@ -76,11 +77,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="2020_05_23_180052_create_playground_info_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="22" column="71" selection-start-line="22" selection-start-column="71" selection-end-line="22" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Utilities.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Helpers/Utilities.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1600">
-              <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+            <state relative-caret-position="367">
+              <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
               <folding>
                 <element signature="e#86#104#0#PHP" expanded="true" />
               </folding>
@@ -150,13 +160,13 @@
         <option value="$PROJECT_DIR$/app/Helpers/Constants.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php" />
-        <option value="$PROJECT_DIR$/app/Helpers/Utilities.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
         <option value="$PROJECT_DIR$/app/PlaygroundInfo.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_05_24_020347_create_reservations_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/ReservationsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php" />
+        <option value="$PROJECT_DIR$/app/Helpers/Utilities.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
       </list>
     </option>
   </component>
@@ -445,7 +455,7 @@
       <workItem from="1592342326458" duration="13091000" />
       <workItem from="1592487118880" duration="14962000" />
       <workItem from="1592564277352" duration="2207000" />
-      <workItem from="1592569193774" duration="546000" />
+      <workItem from="1592569193774" duration="1448000" />
     </task>
     <task id="LOCAL-00001" summary="env">
       <created>1586990611190</created>
@@ -458,7 +468,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114138000" />
+    <option name="totallyTimeSpent" value="115040000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
@@ -804,13 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/nesbot/carbon/src/Carbon/Traits/Comparison.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -818,30 +821,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/Utilities.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1600">
-          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
-          <folding>
-            <element signature="e#86#104#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_05_24_020347_create_reservations_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3500">
-          <caret line="188" column="23" selection-start-line="188" selection-start-column="23" selection-end-line="188" selection-end-column="23" />
-          <folding>
-            <element signature="e#44#67#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,10 +847,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/PlaygroundController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
+        <state relative-caret-position="2200">
           <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
           <folding>
             <element signature="e#44#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_05_23_180052_create_playground_info_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="22" column="71" selection-start-line="22" selection-start-column="71" selection-end-line="22" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Helpers/Utilities.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+          <folding>
+            <element signature="e#86#104#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="185" column="13" lean-forward="true" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="13" />
+          <folding>
+            <element signature="e#44#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
