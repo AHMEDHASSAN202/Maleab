@@ -33,7 +33,6 @@ class ReservationsController extends Controller
         }else {
             //playground not required
             $playground_id = $me->id;
-            $request->validate(['user_id' => 'required', ['user_id.required' => 'صاحب الحجز مطلوب']]);
             $userId = $request->user_id;
         }
 
@@ -109,7 +108,6 @@ class ReservationsController extends Controller
         ]);
 
         if ($me->role != Roles::User) {
-            $request->validate(['user_id' => 'required', ['user_id.required' => 'صاحب الحجز مطلوب']]);
             $reservationData['user_id'] = $request->user_id;
         }
 

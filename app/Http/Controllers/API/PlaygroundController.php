@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\Roles;
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Reservation;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -104,6 +105,8 @@ class PlaygroundController extends Controller
             });
         }
 
-        return response()->json(compact('users'));
+        $reservationAnonymousUsers = Reservation::where('playground_id', $myId)->whereNull('user_id')->get();
+
+        return response()->json(compact('users', 'reservationAnonymousUsers'));
     }
 }
